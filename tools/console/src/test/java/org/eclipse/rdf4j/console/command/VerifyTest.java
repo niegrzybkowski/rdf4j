@@ -130,7 +130,7 @@ public class VerifyTest extends AbstractCommandTest {
 	@Test
 	public final void testShaclInvalidToBinary() throws IOException {
 		File report = new File(locationFile, "testShaclInvalid.brf");
-		cmd.execute("verify", copyFromRes("ok.ttl"), copyFromRes("shacl_invalid.ttl"), report.toString());
+		cmd.execute("verify", copyFromRes("ok.ttl"), copyFromRes("shacl_invalid.brf"), report.toString());
 		assertTrue(io.wasErrorWritten());
 		assertTrue(Files.size(report.toPath()) > 0);
 	}
@@ -139,7 +139,7 @@ public class VerifyTest extends AbstractCommandTest {
 	public final void testShaclValidToBinary() throws IOException {
 		File report = new File(locationFile, "testShaclValid.brf");
 		assertTrue(report.createNewFile());
-		cmd.execute("verify", copyFromRes("ok.ttl"), copyFromRes("shacl_valid.ttl"), report.toString());
+		cmd.execute("verify", copyFromRes("ok.ttl"), copyFromRes("shacl_valid.brf"), report.toString());
 
 		verify(mockConsoleIO, never()).writeError(anyString());
 		assertFalse(Files.size(report.toPath()) > 0);
